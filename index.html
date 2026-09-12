@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giro — o Brasil da semana em cinco frentes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2EEE3;
+    --paper-raised:#EAE4D4;
+    --ink:#1F1B16;
+    --ink-soft:#6E6455;
+    --rule:#D9D0BC;
+    --c-poder:#2E4B6B;
+    --c-dinheiro:#96631C;
+    --c-tela:#1F6F63;
+    --c-cultura:#7A3B69;
+    --c-campo:#43572F;
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-font-smoothing:antialiased;}
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Work Sans", sans-serif;
+    line-height:1.6;
+  }
+
+  .wrap{
+    max-width:700px;
+    margin:0 auto;
+    padding:0 24px 100px;
+  }
+
+  /* ---------- Masthead ---------- */
+
+  .masthead{
+    padding:72px 0 40px;
+    text-align:center;
+    opacity:0;
+    animation:rise .7s ease-out .1s forwards;
+  }
+
+  @keyframes rise{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  .wordmark{
+    font-family:"Fraunces", serif;
+    font-weight:600;
+    font-size:clamp(48px, 10vw, 72px);
+    letter-spacing:-0.02em;
+    margin:0;
+  }
+
+  .tagline{
+    font-style:italic;
+    font-family:"Fraunces", serif;
+    font-size:18px;
+    color:var(--ink-soft);
+    margin:10px 0 26px;
+  }
+
+  .edition-row{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+
+  .edition-row span:not(:last-child){
+    padding-right:18px;
+    border-right:1px solid var(--rule);
+  }
+
+  .lede{
+    max-width:520px;
+    margin:34px auto 0;
+    text-align:center;
+    font-size:17px;
+    color:var(--ink-soft);
+  }
+
+  .full-rule{
+    border:none;
+    border-top:1px solid var(--rule);
+    margin:44px 0;
+  }
+
+  /* ---------- Contents strip ---------- */
+
+  .contents{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 22px;
+    justify-content:center;
+    margin-bottom:52px;
+    font-size:14px;
+  }
+
+  .contents a{
+    color:var(--ink);
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+
+  .dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    display:inline-block;
+    flex-shrink:0;
+  }
+
+  /* ---------- Sections ---------- */
+
+  section.topic{
+    margin-bottom:56px;
+  }
+
+  .topic-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:6px;
+  }
+
+  .topic-head .dot{
+    width:11px;
+    height:11px;
+    transform:translateY(-2px);
+  }
+
+  .topic-title{
+    font-family:"Fraunces", serif;
+    font-weight:600;
+    font-size:15px;
+    margin:0;
+  }
+
+  .topic-desc{
+    color:var(--ink-soft);
+    font-size:14px;
+    margin:0 0 26px 23px;
+  }
+
+  article.story{
+    padding:22px 0;
+    border-top:1px solid var(--rule);
+  }
+
+  article.story:first-of-type{
+    border-top:none;
+    padding-top:0;
+  }
+
+  h2.headline{
+    font-family:"Fraunces", serif;
+    font-weight:500;
+    font-size:27px;
+    line-height:1.28;
+    margin:0 0 10px;
+    letter-spacing:-0.01em;
+  }
+
+  h2.headline a{
+    color:var(--ink);
+    text-decoration:none;
+    background-image:linear-gradient(currentColor, currentColor);
+    background-position:0 100%;
+    background-repeat:no-repeat;
+    background-size:0% 1px;
+    transition:background-size .25s ease;
+  }
+
+  h2.headline a:hover{
+    background-size:100% 1px;
+  }
+
+  p.teaser{
+    margin:0;
+    font-size:16.5px;
+    color:#3A342B;
+    max-width:62ch;
+  }
+
+  p.meta{
+    font-size:13px;
+    color:var(--ink-soft);
+    text-transform:none;
+  }
+
+  /* ---------- Footer / subscribe ---------- */
+
+  .subscribe{
+    background:var(--paper-raised);
+    border-radius:2px;
+    padding:40px 32px;
+    text-align:center;
+    margin-top:20px;
+  }
+
+  .subscribe h3{
+    font-family:"Fraunces", serif;
+    font-weight:500;
+    font-size:24px;
+    margin:0 0 8px;
+  }
+
+  .subscribe p{
+    color:var(--ink-soft);
+    font-size:15px;
+    margin:0 0 22px;
+  }
+
+  .subscribe-form{
+    display:flex;
+    gap:10px;
+    max-width:380px;
+    margin:0 auto;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .subscribe-form input{
+    flex:1 1 200px;
+    padding:13px 16px;
+    border:1px solid var(--rule);
+    background:var(--paper);
+    font-family:"Work Sans", sans-serif;
+    font-size:15px;
+    color:var(--ink);
+    border-radius:2px;
+  }
+
+  .subscribe-form input:focus{
+    outline:2px solid var(--ink);
+    outline-offset:1px;
+  }
+
+  .subscribe-form button{
+    padding:13px 22px;
+    background:var(--ink);
+    color:var(--paper);
+    border:none;
+    font-family:"Work Sans", sans-serif;
+    font-size:15px;
+    font-weight:500;
+    border-radius:2px;
+    cursor:pointer;
+  }
+
+  .subscribe-form button:hover{
+    opacity:.85;
+  }
+
+  footer.fine{
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:13px;
+    margin-top:36px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .masthead{animation:none; opacity:1;}
+  }
+
+  @media (max-width:520px){
+    .masthead{padding:52px 0 32px;}
+    h2.headline{font-size:23px;}
+    .topic-desc{margin-left:0;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="masthead">
+    <p class="wordmark">Giro</p>
+    <p class="tagline">o Brasil da semana, em cinco frentes</p>
+    <div class="edition-row">
+      <span>Atualização diária</span>
+      <span id="updated-stamp">carregando…</span>
+    </div>
+    <p class="lede">Política, economia, tecnologia, cultura e futebol: o que realmente mudou no país nos últimos dias, sem enrolação.</p>
+  </div>
+
+  <hr class="full-rule">
+
+  <nav class="contents">
+    <a href="#poder"><span class="dot" style="background:var(--c-poder)"></span>Poder</a>
+    <a href="#dinheiro"><span class="dot" style="background:var(--c-dinheiro)"></span>Dinheiro</a>
+    <a href="#tela"><span class="dot" style="background:var(--c-tela)"></span>Tela &amp; Código</a>
+    <a href="#cultura"><span class="dot" style="background:var(--c-cultura)"></span>Cultura</a>
+    <a href="#campo"><span class="dot" style="background:var(--c-campo)"></span>Campo</a>
+  </nav>
+
+  <section class="topic" id="poder">
+    <div class="topic-head">
+      <span class="dot" style="background:var(--c-poder)"></span>
+      <p class="topic-title">Poder</p>
+    </div>
+    <p class="topic-desc">O que se move em Brasília e nos bastidores da eleição.</p>
+
+    <div id="list-poder">
+      <article class="story">
+        <h2 class="headline"><a href="#">O Brasil já entrou no modo eleição</a></h2>
+        <p class="teaser">A poucos meses do primeiro turno, o tabuleiro de 2026 ganha contornos mais nítidos: Lula tenta a reeleição pelo PT enquanto nomes como Tarcísio de Freitas, Ronaldo Caiado e Eduardo Leite disputam espaço no campo de oposição.</p>
+      </article>
+      <article class="story">
+        <h2 class="headline"><a href="#">Toga e urna: o julgamento que não sai de cena</a></h2>
+        <p class="teaser">A repercussão do julgamento de Bolsonaro no STF segue como pano de fundo da corrida presidencial, intensificando a polarização entre governo e oposição.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="topic" id="dinheiro">
+    <div class="topic-head">
+      <span class="dot" style="background:var(--c-dinheiro)"></span>
+      <p class="topic-title">Dinheiro</p>
+    </div>
+    <p class="topic-desc">Juros, preços e o pulso da economia real.</p>
+
+    <div id="list-dinheiro">
+      <article class="story">
+        <h2 class="headline"><a href="#">Juro alto, paciência maior</a></h2>
+        <p class="teaser">O Boletim Focus desta semana manteve o tom de cautela: a inflação projetada para 2026 gira perto de 5%, acima do teto da meta, e a Selic segue entre as mais altas em duas décadas.</p>
+      </article>
+      <article class="story">
+        <h2 class="headline"><a href="#">A economia cresce, mas sem pressa</a></h2>
+        <p class="teaser">Segundo o IBGE, o PIB avançou 0,5% no segundo trimestre, somando expansão de 1,9% em 12 meses — o quinto ano seguido de crescimento.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="topic" id="tela">
+    <div class="topic-head">
+      <span class="dot" style="background:var(--c-tela)"></span>
+      <p class="topic-title">Tela &amp; Código</p>
+    </div>
+    <p class="topic-desc">Inteligência artificial, startups e o Brasil digital.</p>
+
+    <div id="list-tela">
+      <article class="story">
+        <h2 class="headline"><a href="#">O Brasil vira laboratório de IA</a></h2>
+        <p class="teaser">O número de startups brasileiras de inteligência artificial quase triplicou em uma década, saltando de pouco mais de 350 para quase mil empresas.</p>
+      </article>
+      <article class="story">
+        <h2 class="headline"><a href="#">Rio vira palco global da inteligência artificial</a></h2>
+        <p class="teaser">O Web Summit Rio reuniu cerca de 40 mil pessoas no Riocentro, com anúncios de Itaú, Google Cloud, IBM e AWS sobre novos investimentos em IA no país.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="topic" id="cultura">
+    <div class="topic-head">
+      <span class="dot" style="background:var(--c-cultura)"></span>
+      <p class="topic-title">Cultura</p>
+    </div>
+    <p class="topic-desc">Música, cinema e o que está movendo os palcos.</p>
+
+    <div id="list-cultura">
+      <article class="story">
+        <h2 class="headline"><a href="#">O mundo vem cantar em português</a></h2>
+        <p class="teaser">2026 promete superar o recorde de turnês internacionais no Brasil, com o Rio de Janeiro em destaque pelo Rock in Rio de setembro.</p>
+      </article>
+      <article class="story">
+        <h2 class="headline"><a href="#">Cinema brasileiro bate na porta de Hollywood</a></h2>
+        <p class="teaser">O sucesso de "O Agente Secreto", de Kleber Mendonça Filho, rendeu a profissionais pernambucanos um convite para integrar a Academia que vota no Oscar.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="topic" id="campo">
+    <div class="topic-head">
+      <span class="dot" style="background:var(--c-campo)"></span>
+      <p class="topic-title">Campo</p>
+    </div>
+    <p class="topic-desc">Seleção, clubes e a estrada até o Mundial.</p>
+
+    <div id="list-campo">
+      <article class="story">
+        <h2 class="headline"><a href="#">Ancelotti fecha a lista rumo ao hexa</a></h2>
+        <p class="teaser">A convocação da Seleção para o Mundial de 2026 trouxe nomes como Neymar, Vinícius Júnior e Casemiro, na tentativa de encerrar o jejum desde o pentacampeonato de 2002.</p>
+      </article>
+    </div>
+  </section>
+
+  <div class="subscribe">
+    <h3>Receba o Giro toda sexta</h3>
+    <p>Cinco minutos de leitura, direto na sua caixa de entrada.</p>
+    <form class="subscribe-form" onsubmit="return false;">
+      <input type="email" placeholder="seu@email.com" aria-label="Seu e-mail">
+      <button type="submit">Quero receber</button>
+    </form>
+  </div>
+
+  <footer class="fine">
+    Giro é um resumo diário e independente do noticiário brasileiro, atualizado automaticamente a partir de fontes públicas.
+  </footer>
+
+</div>
+
+<script>
+  var CATS = ['poder', 'dinheiro', 'tela', 'cultura', 'campo'];
+
+  function formatDate(pubDate) {
+    try {
+      var d = new Date(pubDate);
+      if (isNaN(d.getTime())) return '';
+      return d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' });
+    } catch (e) {
+      return '';
+    }
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.textContent = str || '';
+    return div.innerHTML;
+  }
+
+  function renderCategory(key, items) {
+    var container = document.getElementById('list-' + key);
+    if (!container || !items || !items.length) return;
+    container.innerHTML = items.map(function (item, i) {
+      var meta = [item.source, formatDate(item.pubDate)].filter(Boolean).join(' · ');
+      var firstStyle = i === 0 ? ' style="border-top:none;padding-top:0"' : '';
+      return (
+        '<article class="story"' + firstStyle + '>' +
+          '<h2 class="headline"><a href="' + item.link + '" target="_blank" rel="noopener">' + escapeHtml(item.title) + '</a></h2>' +
+          (meta ? '<p class="teaser meta">' + escapeHtml(meta) + '</p>' : '') +
+        '</article>'
+      );
+    }).join('');
+  }
+
+  fetch('/api/news')
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (!data || !data.categories) return;
+      CATS.forEach(function (key) {
+        renderCategory(key, data.categories[key]);
+      });
+      var stamp = document.getElementById('updated-stamp');
+      if (stamp) {
+        var d = data.updatedAt ? new Date(data.updatedAt) : new Date();
+        stamp.textContent = 'Atualizado em ' + d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+      }
+    })
+    .catch(function () {
+      var stamp = document.getElementById('updated-stamp');
+      if (stamp) stamp.textContent = '12 de setembro de 2026';
+      // mantém o conteúdo estático já presente na página
+    });
+</script>
+
+</body>
+</html>
